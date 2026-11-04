@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const repo = fileURLToPath(new URL('../../../', import.meta.url));
 const host = createRequire(new URL('../../../apps/cli/package.json', import.meta.url));
 const packages = ['durable-kernel', 'vfs-core', 'kernel-adapters', 'llm-flow', 'driver-llm'];
-const alias = packages.map(name => ({ find: new RegExp(`^@itookit/${name}$`), replacement: host.resolve(`@itookit/${name}`) }));
+const alias = packages.map(name => ({ find: new RegExp(`^@nestos/${name}$`), replacement: host.resolve(`@nestos/${name}`) }));
 alias.push({ find: /^vitest$/, replacement: join(dirname(host.resolve('vitest/package.json')), 'dist/index.js') });
 
 export default {

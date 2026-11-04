@@ -1,13 +1,13 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { Kernel, type EffectAdapter } from '@itookit/durable-kernel';
-import { createVFS, MemoryBackend } from '@itookit/vfs-core';
-import { ToolProgram } from '@itookit/kernel-adapters';
-import { AnthropicProvider } from '@itookit/driver-llm';
+import { Kernel, type EffectAdapter } from '@nestos/durable-kernel';
+import { createVFS, MemoryBackend } from '@nestos/vfs-core';
+import { ToolProgram } from '@nestos/kernel-adapters';
+import { AnthropicProvider } from '@nestos/driver-llm';
 import {
     createBuiltinDagPluginRegistry, createFlowRevision, DurableFlowExecutor,
     flowToDag, registerDurablePrograms, validateFlowRevision,
-} from '@itookit/llm-flow';
+} from '@nestos/llm-flow';
 
 vi.setConfig({ testTimeout: 20000 });
 vi.mock('../node/process.mjs', () => ({invoke: async (_args: unknown, input: {source: string}) => ({cards: JSON.parse(input.source)})}));

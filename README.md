@@ -105,7 +105,7 @@ CLI 只读取这一个 `.flow`，内部函数按词法作用域解析，不需�
 
 ```bash
 cargo build --manifest-path tools/anki-cli/Cargo.toml --locked
-pnpm --filter @itookit/cli exec vitest run --config ../../tools/anki-cli/tests/mindos-vitest.config.mjs
+pnpm --filter @nestos/cli exec vitest run --config ../../tools/anki-cli/tests/mindos-vitest.config.mjs
 node tools/anki-cli/tests/verify-flow.mjs
 ```
 
