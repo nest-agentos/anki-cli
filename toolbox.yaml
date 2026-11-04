@@ -1,0 +1,13 @@
+version: 1
+preinstall: true
+tools:
+  anki.batch:
+    parameters:
+      - {name: batchSize, label: 每批卡片数}
+  anki.plan:
+    parameters:
+      - {name: deck_name, label: 牌组名称}
+      - {name: directory, label: 产物目录}
+      - {name: images, label: 生成配图}
+      - {name: audio, label: 生成语音}
+      - {name: voice, label: 音色}

@@ -1,0 +1,25 @@
+{
+  "format": 1,
+  "id": "anki-cli",
+  "version": "0.1.0",
+  "module": "node/extension.mjs",
+  "tools": [
+    { "id": "anki.prepare", "version": "1" },
+    { "id": "anki.recognize", "version": "1" },
+    { "id": "anki.batch", "version": "1" },
+    { "id": "anki.collect", "version": "1" },
+    { "id": "anki.plan", "version": "1" },
+    { "id": "anki.package", "version": "1" }
+  ],
+  "files": [
+    "node",
+    "template"
+  ],
+  "executables": [
+    {
+      "env": "ANKI_CLI_BIN",
+      "command": "anki-cli",
+      "default": "target/release/anki-cli"
+    }
+  ]
+}

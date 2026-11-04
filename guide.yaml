@@ -1,0 +1,34 @@
+version: 1
+title: Anki 制卡工具包使用指南
+description: |
+  已注册后仍可查看安装、模型配置与运行步骤。工具包负责制卡业务，NestOS 提供通用工具运行和 Flow 编排。
+steps:
+  - title: 准备可执行程序
+    description: |
+      宿主管理员安装 anki-cli。宿主优先使用 ANKI_CLI_BIN 指定的程序，其次查找 PATH 中的 anki-cli，最后使用包内 target/release/anki-cli。
+      若需要从源码构建，在本包目录手动运行下面命令。平台不会自动下载或编译程序。
+    command: cargo build --release --locked
+  - title: 检查预装状态并为自己启用
+    description: |
+      程序就绪后，系统启动时预装 anki-cli；每位用户默认停用。勾选“为我启用”并保存，已安装后仍可查看本指南。
+      缺少程序时先由宿主管理员安装，再重试注册。可在个人默认参数配置常用批次大小、牌组和产物目录；任务中明确填写的值优先。
+      包本身无需第三方账号认证；调用模型使用 NestOS 中配置的模型连接，密钥不写入制卡文本或 Flow 文件。
+  - title: 恢复制卡流程
+    description: |
+      在系统恢复中恢复“Anki 制卡（文本或图片）”（anki-generate），按需覆盖旧的流程定义。
+      本包提供多个阶段工具，主流程串联识别、审核与打包。用户自定义组合也可直接使用工具箱中的工具。
+  - title: 配置输入和模型连接
+    description: |
+      运行主流程，选择文本、图片或 JSON 分组输入。文本为默认方式，可以直接填写或读取文件；图片使用附件文件。
+      配置文字生成连接，图片识别需要支持图片输入的连接。配图和语音为可选连接，不需要时在对应连接中关闭。
+      多张图片默认一起处理，按需改为逐个处理；分组按运行界面提供的多项处理方式执行。
+  - title: 审核并继续
+    description: |
+      识别后在审核步骤检查分组、卡片内容和媒体需求，修改后继续生成。错误会在运行记录显示具体阶段及原因。
+      先用少量内容验证模型和模板，再处理较大的材料。
+  - title: 导出并导入 Anki
+    description: |
+      从运行产物导出 .apkg 文件，在 Anki 导入。保留生成卡片的稳定身份，重复导出与更新遵循 Anki 导入规则；覆盖操作需显式选择。
+    links:
+      - label: Anki 牌组包导入说明
+        url: https://docs.ankiweb.net/manual/importing/packaged-decks

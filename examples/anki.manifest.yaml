@@ -1,0 +1,22 @@
+version: 1
+deck:
+  id: 123456789
+  name: 英语单词
+  description: 单词卡片示例
+output: deck.apkg
+cards:
+  - id: apple.json
+    kind: word
+    data:
+      name: apple
+      unit: 2
+      symbol: /ˈæpəl/
+      chn: 苹果
+      example_en: I eat an apple.
+      example_cn: 我吃一个苹果。
+      word_family: apples
+      memory_tips: 联想红苹果的形状。
+      difficulty: '1'
+      collocations: an apple a day 每天一个苹果
+      image_prompt: A student eating a red apple.
+media: []
