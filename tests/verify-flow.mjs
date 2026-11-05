@@ -25,7 +25,7 @@ await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const endpoint = `http://127.0.0.1:${server.address().port}`;
 try {
     await seed();
-    const source = path.join(repo, 'backend/app-core/src/presets/anki-generate.json');
+    const source = path.join(repo, 'backend/app-core/src/resources/flows/anki-generate.json');
     const definition = JSON.parse(await readFile(source, 'utf8'));
     assert.equal(definition.id, 'anki-generate');
     assert.deepEqual(definition.functions.map(fn => fn.id), ['anki-build','anki-recognize-group','anki-complete-batch']);

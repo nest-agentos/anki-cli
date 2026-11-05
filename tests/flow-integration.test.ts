@@ -12,7 +12,7 @@ import {
 vi.setConfig({ testTimeout: 20000 });
 vi.mock('../node/process.mjs', () => ({invoke: async (_args: unknown, input: {source: string}) => ({cards: JSON.parse(input.source)})}));
 const planners = await vi.importActual<{ recognizeGroups(args: any): unknown; collectCards(args: any, context: unknown): Promise<unknown> }>('../node/batch.mjs');
-const draft = () => JSON.parse(readFileSync(new URL('../../../backend/app-core/src/presets/anki-generate.json', import.meta.url), 'utf8'));
+const draft = () => JSON.parse(readFileSync(new URL('../../../backend/app-core/src/resources/flows/anki-generate.json', import.meta.url), 'utf8'));
 const definition = (id: string) => {
     const entry = draft();
     return id === entry.id ? entry : entry.functions.find((fn: any) => fn.id === id);

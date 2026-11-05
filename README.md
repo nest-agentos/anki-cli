@@ -79,7 +79,7 @@ export MINDOS_TOOL_MODULES='["/absolute/path/anki-cli/node/extension.mjs"]'
 
 在这两个环境变量下启动 Node 宿主（httpd 或 CLI）。扩展注册 `anki.prepare@1`、`anki.recognize@1`、`anki.batch@1`、`anki.collect@1`、`anki.plan@1`、`anki.package@1`；浏览器和 Tauri 未安装此 Node 扩展时不具备 Rust 打包能力。
 
-本包提供确定性的 Anki Tool 与 Rust 打包能力；Flow 是平台通用定义，不属于 Tool 包。MindOS 应用层保留唯一可恢复资源 [anki-generate.json](../../backend/app-core/src/presets/anki-generate.json)，恢复为一个 `anki-generate.flow`。该资源提供文本、JSON、图片及多组输入的统一入口，并通过通用 `functions` 声明内部制卡、单组识图、单批补全函数；这些函数不会单独出现在工具箱中。Tool 包不再保存 Flow 副本，独立 Cargo 构建和测试不依赖 MindOS 应用源码。
+本包提供确定性的 Anki Tool 与 Rust 打包能力；Flow 是平台通用定义，不属于 Tool 包。MindOS 应用层保留唯一可恢复资源 [anki-generate.json](../../backend/app-core/src/resources/flows/anki-generate.json)，恢复为一个 `anki-generate.flow`。该资源提供文本、JSON、图片及多组输入的统一入口，并通过通用 `functions` 声明内部制卡、单组识图、单批补全函数；这些函数不会单独出现在工具箱中。Tool 包不再保存 Flow 副本，独立 Cargo 构建和测试不依赖 MindOS 应用源码。
 
 在 MindOS 系统设置中显式恢复这一个流程资源，或导入从恢复目录导出的同一定义；无需分别导入或发布内部函数。恢复使用应用层通用资源机制，已安装旧版 `anki-generate` 不会被自动覆盖；已有用户文件和冻结运行不自动改写。可由用户自行组织到工具箱抽屉。在入口表单绑定 `text`，按需绑定 `image` / `speech`；配图和语音默认关闭。图片入口还需绑定支持图片输入的 `vision` 聊天连接。最多 12 张 PNG/JPEG/WebP 原图、合计 80 MiB，宿主单图上传上限 20 MiB；image.process@1 按 Flow 配方缩放至最长边 2048、转灰度、编码 JPEG，处理后单图最多 2 MiB、合计 6 MiB。原图和派生图以资产引用持久保存，处理节点可预览，恢复时无需重新选择。识别后始终暂停供用户修改 JSON，校对提交前不会开始补全或打包。
 
