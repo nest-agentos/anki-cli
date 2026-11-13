@@ -184,7 +184,7 @@ async function save(relative,value) {
 }
 async function invoke(...args) {
     try { return await promisify(execFile)(process.execPath,[...cli,...args,'--profile',workspace,'--state-dir',workspace,'--headless','--json'],{
-        cwd:workspace,timeout:180000,maxBuffer:32000000,env:{...process.env,ANKI_CLI_BIN:binary,MINDOS_TOOL_MODULES:JSON.stringify([path.join(repo,'tools/anki-cli/node/extension.mjs')]),XDG_CONFIG_HOME:path.join(workspace,'xdg'),MINDOS_LOG_DIR:path.join(workspace,'logs')},
+        cwd:workspace,timeout:180000,maxBuffer:32000000,env:{...process.env,ANKI_CLI_BIN:binary,NESTOS_TOOL_MODULES:JSON.stringify([path.join(repo,'tools/anki-cli/node/extension.mjs')]),XDG_CONFIG_HOME:path.join(workspace,'xdg'),NESTOS_LOG_DIR:path.join(workspace,'logs')},
     }); } catch(error) {
         if(error.code===3 && error.stderr?.includes('run.waiting')) return {stdout:error.stdout,stderr:error.stderr};
         throw new Error(`${error.message}\n${error.stderr}\n${error.stdout}\nworkspace=${workspace}`);
